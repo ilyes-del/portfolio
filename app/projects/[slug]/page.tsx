@@ -32,7 +32,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     const project = projects.find((p) => p.slug === slug)
     const isDeliveryProject = slug === "delivery-automation-system"
     const isJavafxProject = slug === "javafx-management-application"
-    const isIotProject = slug === "smart-home-iot-platform"
+    const isIotProject = slug === "iot-project" || slug === "smart-home-iot-platform"
 
     if (!project) {
         notFound()
@@ -230,6 +230,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                     </section>
 
                                     <section className="space-y-3">
+                                        <h3 className="text-xl font-semibold">Introduction</h3>
+                                        <p className="text-card-foreground/80 leading-relaxed">
+                                            {iotProjectContent.introduction}
+                                        </p>
+                                    </section>
+
+                                    <section className="space-y-3">
                                         <h3 className="text-xl font-semibold">Project Goals</h3>
                                         <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
                                             {iotProjectContent.goals.map((item) => (
@@ -239,12 +246,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                     </section>
 
                                     <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">Operation Mode</h3>
-                                        <p className="text-card-foreground/80 leading-relaxed">{iotProjectContent.operatingMode}</p>
-                                    </section>
-
-                                    <section className="space-y-3">
                                         <h3 className="text-xl font-semibold">System Architecture</h3>
+                                        <p className="text-card-foreground/80 leading-relaxed">
+                                            {iotProjectContent.architectureNote}
+                                        </p>
                                         <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
                                             {iotProjectContent.architecture.map((item) => (
                                                 <li key={item}>{item}</li>
@@ -254,52 +259,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
                                     <section className="space-y-3">
                                         <h3 className="text-xl font-semibold">Mathematical & Control Model</h3>
+                                        <p className="text-card-foreground/80 leading-relaxed">
+                                            {iotProjectContent.stateVariable}
+                                        </p>
                                         <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
                                             {iotProjectContent.modelHighlights.map((item) => (
                                                 <li key={item}>{item}</li>
                                             ))}
                                         </ul>
-                                    </section>
-
-                                    <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">State Variable</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
-                                            {iotProjectContent.stateVariable.map((item) => (
-                                                <li key={item}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    </section>
-
-                                    <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">Core Equations</h3>
                                         <pre className="p-4 rounded-lg bg-muted text-sm overflow-x-auto">
-                                            <code>
-                                                Water balance: {iotProjectContent.equations.waterBalance}
-                                                {"\n"}
-                                                ET prediction: {iotProjectContent.equations.evapotranspiration}
-                                                {"\n"}
-                                                Drainage: {iotProjectContent.equations.drainage}
-                                                {"\n"}
-                                                Sensor measurement: {iotProjectContent.equations.delayMeasurement}
-                                                {"\n"}
-                                                Delay correction: {iotProjectContent.equations.delayCorrection}
-                                                {"\n"}
-                                                Target moisture: {iotProjectContent.equations.targetMoisture}
-                                                {"\n"}
-                                                Irrigation demand: {iotProjectContent.equations.irrigationNeed}
-                                                {"\n"}
-                                                Actuator command: {iotProjectContent.equations.valveTime}
-                                            </code>
+                                            <code>{iotProjectContent.equations.join("\n")}</code>
                                         </pre>
-                                    </section>
-
-                                    <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">Hysteresis Control Law</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
-                                            {iotProjectContent.controlLaw.map((item) => (
-                                                <li key={item}>{item}</li>
-                                            ))}
-                                        </ul>
                                     </section>
 
                                     <section className="space-y-3">
@@ -321,28 +291,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                                     </section>
 
                                     <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">Stability Notes</h3>
+                                        <h3 className="text-xl font-semibold">Implementation Strategy</h3>
                                         <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
-                                            {iotProjectContent.offlineAndStabilityNotes.map((item) => (
+                                            {iotProjectContent.prototypeApproach.map((item) => (
                                                 <li key={item}>{item}</li>
                                             ))}
                                         </ul>
-                                    </section>
-
-                                    <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">Implementation Strategy</h3>
                                         <p className="text-card-foreground/80 leading-relaxed">
                                             {iotProjectContent.implementationNote}
                                         </p>
-                                    </section>
-
-                                    <section className="space-y-3">
-                                        <h3 className="text-xl font-semibold">Practical Prototype Stack</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-card-foreground/80">
-                                            {iotProjectContent.practicalStack.map((item) => (
-                                                <li key={item}>{item}</li>
-                                            ))}
-                                        </ul>
                                     </section>
 
                                     <section className="space-y-3">
